@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://d66etto04su"]
+
+[ext_resource type="Script" uid="uid://chptkt5mm6vv6" path="res://ui/main_menu/main_menu.gd" id="1_uhj5c"]
+
+[node name="MainMenu" type="MarginContainer" unique_id=983276307]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uhj5c")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=2040936018]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="VBoxContainer2" unique_id=768852271]
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 48
+text = "Shoot Together"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2" unique_id=1953239823]
+custom_minimum_size = Vector2(132, 90)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="SinglePlayerButton" type="Button" parent="VBoxContainer2/VBoxContainer" unique_id=1381355033]
+layout_mode = 2
+text = "Single Player"
+
+[node name="MultiplayerButton" type="Button" parent="VBoxContainer2/VBoxContainer" unique_id=859730891]
+layout_mode = 2
+text = "Multiplayer
+"
+
+[node name="OptionsButton" type="Button" parent="VBoxContainer2/VBoxContainer" unique_id=83300498]
+layout_mode = 2
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer2/VBoxContainer" unique_id=1667268290]
+layout_mode = 2
+text = "Quit
+"

@@ -1,0 +1,4 @@
+res://ui/multiplayer_menu/multiplayer_menu.tscn
+res://resources/theme.tres
+res://resources/shader/background.gdshader
+res://resources/shader/hit_flash.gdshader

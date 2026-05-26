@@ -1,0 +1,14 @@
+GPUParticles2D
+VBoxContainer
+Label
+Button
+HBoxContainer
+ProgressBar
+MarginContainer
+CanvasLayer
+AudioStreamPlayer
+Node
+Sprite2D
+AnimationPlayer
+AnimationTree
+CollisionShape2D

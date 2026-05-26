@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://dnkox5cwbyocj"]
+
+[ext_resource type="Texture2D" uid="uid://b2h16rtctoary" path="res://effect/rain_particles/rain_drop_particles.tres" id="1_8xi7j"]
+[ext_resource type="Material" uid="uid://do5r3j3kkgi72" path="res://effect/rain_particles/rain_bloom_canvas_item_material.tres" id="2_h0x5x"]
+[ext_resource type="Texture2D" uid="uid://cyp7dlcq5vn02" path="res://assets/rain_bloom.png" id="2_j8sl6"]
+[ext_resource type="Material" uid="uid://b4yfvywjh1qom" path="res://effect/rain_particles/rain_bloom_particles.tres" id="2_wf1k0"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ky45a"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(640, 1, 1)
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 100.0
+initial_velocity_max = 150.0
+gravity = Vector3(0, 198, 0)
+
+[node name="RainEffects" type="Node2D" unique_id=1639187925]
+position = Vector2(320, 0)
+
+[node name="RainDropParticles" type="GPUParticles2D" parent="." unique_id=232390537]
+position = Vector2(-3, 2)
+amount = 100
+amount_ratio = 0.8
+texture = ExtResource("1_8xi7j")
+lifetime = 5.0
+visibility_rect = Rect2(-400, -100, 800, 200)
+process_material = SubResource("ParticleProcessMaterial_ky45a")
+
+[node name="RainBloomParticles" type="GPUParticles2D" parent="." unique_id=570438578]
+self_modulate = Color(1, 1, 1, 0.84313726)
+material = ExtResource("2_h0x5x")
+position = Vector2(0, 176)
+texture = ExtResource("2_j8sl6")
+lifetime = 0.6
+process_material = ExtResource("2_wf1k0")

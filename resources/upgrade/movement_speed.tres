@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="UpgradeResource" format=3 uid="uid://d24551augoux6"]
+
+[ext_resource type="Script" uid="uid://y3mqao6r0nkv" path="res://resources/upgrade/upgrade_resource.gd" id="1_i2swd"]
+
+[resource]
+script = ExtResource("1_i2swd")
+id = "movement_speed"
+display_name = "Increased Speed"
+description = "Move speed increased by 15%"
+metadata/_custom_type_script = "uid://y3mqao6r0nkv"

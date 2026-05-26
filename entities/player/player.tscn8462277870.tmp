@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://drjwnqv5kw156"]
+
+[ext_resource type="Script" uid="uid://dfd7marpriypo" path="res://entities/player/player.gd" id="1_symyc"]
+[ext_resource type="PackedScene" uid="uid://bqpjeeayhh6qm" path="res://component/player_input_synchronizer_component.tscn" id="2_abrql"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_sfv1e"]
+size = Vector2(18, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_symyc"]
+
+[node name="player" type="CharacterBody2D" unique_id=1812185381]
+script = ExtResource("1_symyc")
+
+[node name="PlayerInputSynchronizerComponent" parent="." unique_id=1243785066 instance=ExtResource("2_abrql")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1420239113]
+position = Vector2(0, -16)
+texture = SubResource("PlaceholderTexture2D_sfv1e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1121763250]
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_symyc")

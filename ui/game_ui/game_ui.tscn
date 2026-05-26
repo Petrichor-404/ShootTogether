@@ -1,0 +1,127 @@
+[gd_scene format=3 uid="uid://xsuaxe6vdc24"]
+
+[ext_resource type="Script" uid="uid://4dpym0j2xkst" path="res://ui/game_ui/game_ui.gd" id="1_5rq5h"]
+[ext_resource type="Texture2D" uid="uid://c6ubis27swfqy" path="res://assets/ui/portrait.png" id="2_adpq5"]
+[ext_resource type="Texture2D" uid="uid://cxhtrs7m60hhl" path="res://assets/ui/portrait_clip_mask.png" id="3_bkjh4"]
+[ext_resource type="Texture2D" uid="uid://dbyh4rfbaxo6j" path="res://entities/player/player-medium.png" id="4_bl2pf"]
+
+[node name="GameUI" type="CanvasLayer" unique_id=1082958053]
+script = ExtResource("1_5rq5h")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1128240917]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 48
+
+[node name="ReadyUpContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1817963349]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="ReadyLabel" type="Label" parent="MarginContainer/ReadyUpContainer" unique_id=2056540418]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.09019608, 0.7294118, 0.49019608, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+text = "READY"
+horizontal_alignment = 1
+
+[node name="NoReadyLabel" type="Label" parent="MarginContainer/ReadyUpContainer" unique_id=664478406]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
+theme_override_constants/outline_size = 6
+text = "PRESS R TO READY UP"
+horizontal_alignment = 1
+
+[node name="ReadyCountLabel" type="Label" parent="MarginContainer/ReadyUpContainer" unique_id=694718076]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+text = "1/4 READY"
+horizontal_alignment = 1
+
+[node name="RoundInfoContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1675369732]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="RoundLabel" type="Label" parent="MarginContainer/RoundInfoContainer" unique_id=1627228386]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+text = "Round 0"
+
+[node name="TimerLabel" type="Label" parent="MarginContainer/RoundInfoContainer" unique_id=868292816]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+text = "0"
+
+[node name="PlayerInfoContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1985996168]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PlayerInfoContainer" unique_id=2105600796]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("2_adpq5")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PlayerInfoContainer/TextureRect" unique_id=1858411515]
+clip_children = 1
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 0
+offset_right = 25.0
+offset_bottom = 25.0
+mouse_filter = 2
+texture = ExtResource("3_bkjh4")
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/PlayerInfoContainer/TextureRect/TextureRect" unique_id=1235635307]
+position = Vector2(16, 15)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_bl2pf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PlayerInfoContainer" unique_id=1518510681]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="DisplayNameLabelUI" type="Label" parent="MarginContainer/PlayerInfoContainer/VBoxContainer" unique_id=1456347541]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+text = "player name"
+
+[node name="HealthProgressBar" type="ProgressBar" parent="MarginContainer/PlayerInfoContainer/VBoxContainer" unique_id=1075013718]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(97, 8)
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+max_value = 1.0
+show_percentage = false

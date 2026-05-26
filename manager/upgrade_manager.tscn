@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://d2cnhdtm0s00d"]
+
+[ext_resource type="Script" uid="uid://c37g4vlxkhk87" path="res://manager/upgrade_manager.gd" id="1_t255f"]
+[ext_resource type="Script" uid="uid://y3mqao6r0nkv" path="res://resources/upgrade/upgrade_resource.gd" id="2_mwqae"]
+[ext_resource type="Resource" uid="uid://1eb8ox11lfqr" path="res://resources/upgrade/damage.tres" id="3_cqd44"]
+[ext_resource type="Resource" uid="uid://dwiejgxis53vx" path="res://resources/upgrade/fire_rate.tres" id="3_f8rek"]
+[ext_resource type="Resource" uid="uid://bi8gtwgut782b" path="res://resources/upgrade/health.tres" id="5_tsptf"]
+[ext_resource type="Resource" uid="uid://d24551augoux6" path="res://resources/upgrade/movement_speed.tres" id="6_sdang"]
+
+[node name="UpgradeManager" type="Node" unique_id=863152773]
+script = ExtResource("1_t255f")
+available_upgrades = Array[ExtResource("2_mwqae")]([ExtResource("3_f8rek"), ExtResource("5_tsptf"), ExtResource("3_cqd44"), ExtResource("6_sdang")])

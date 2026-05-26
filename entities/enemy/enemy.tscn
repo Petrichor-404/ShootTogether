@@ -1,0 +1,159 @@
+[gd_scene format=3 uid="uid://fycp2fau4dii"]
+
+[ext_resource type="Script" uid="uid://ckjl7yw6ew0m8" path="res://entities/enemy/enemy.gd" id="1_im2q6"]
+[ext_resource type="Texture2D" uid="uid://dx5d2obxjolmr" path="res://entities/enemy/enemy_medium.png" id="1_ksmh7"]
+[ext_resource type="PackedScene" uid="uid://b5p5w4ecgqe43" path="res://component/health_component.tscn" id="2_3fvr7"]
+[ext_resource type="AudioStream" uid="uid://dbc2su3rekstk" path="res://assets/audio/hit_1.wav" id="3_4ohlc"]
+[ext_resource type="PackedScene" uid="uid://c73724osh557w" path="res://component/hurtbox_component.tscn" id="3_dt443"]
+[ext_resource type="AudioStream" uid="uid://dgn3fehatbp3d" path="res://assets/audio/hit_2.wav" id="4_aqotc"]
+[ext_resource type="Texture2D" uid="uid://4hcaltakjc1o" path="res://entities/enemy/attack_alert.png" id="4_d50e0"]
+[ext_resource type="PackedScene" uid="uid://bakoutxex5swj" path="res://component/hitbox_component.tscn" id="5_4wwj3"]
+[ext_resource type="AudioStream" uid="uid://cdcbm0thalah8" path="res://assets/audio/hit_3.wav" id="5_ogeq8"]
+[ext_resource type="PackedScene" uid="uid://cgps2cbcocsao" path="res://component/hit_flash_sprite_component.tscn" id="6_61ikd"]
+[ext_resource type="Shader" uid="uid://gw0c5sypgydx" path="res://resources/shader/hit_flash.gdshader" id="6_721x4"]
+[ext_resource type="AudioStream" uid="uid://dx2jgjubvrcom" path="res://assets/audio/hit_4.wav" id="6_jfjhj"]
+
+[sub_resource type="Animation" id="Animation_721x4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/HitFlashSpriteComponent:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_eaj7m"]
+resource_name = "run"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/HitFlashSpriteComponent:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 0.8), Vector2(0.8, 1.2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a8fs5"]
+_data = {
+&"RESET": SubResource("Animation_721x4"),
+&"run": SubResource("Animation_eaj7m")
+}
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_im2q6"]
+properties/0/path = NodePath(".:global_position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:target_position")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+properties/2/path = NodePath(".:current_state")
+properties/2/spawn = true
+properties/2/replication_mode = 2
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_t1g2p"]
+random_pitch = 1.0656005
+random_volume_offset_db = 2.0
+streams_count = 4
+stream_0/stream = ExtResource("3_4ohlc")
+stream_1/stream = ExtResource("4_aqotc")
+stream_2/stream = ExtResource("5_ogeq8")
+stream_3/stream = ExtResource("6_jfjhj")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4wwj3"]
+size = Vector2(16, 23)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7vrfk"]
+resource_local_to_scene = true
+shader = ExtResource("6_721x4")
+shader_parameter/percent = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d50e0"]
+size = Vector2(12, 19)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_im2q6"]
+radius = 6.0
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1497709167]
+collision_layer = 2
+collision_mask = 259
+motion_mode = 1
+script = ExtResource("1_im2q6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1478755593]
+libraries/ = SubResource("AnimationLibrary_a8fs5")
+speed_scale = 0.5
+
+[node name="EnemyPositionSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=677430786]
+replication_config = SubResource("SceneReplicationConfig_im2q6")
+
+[node name="TargetAcquisitionTimer" type="Timer" parent="." unique_id=1527081944]
+wait_time = 0.2
+one_shot = true
+
+[node name="AttackCoolDownTimer" type="Timer" parent="." unique_id=237156727]
+wait_time = 4.0
+one_shot = true
+
+[node name="ChargeAttackTimer" type="Timer" parent="." unique_id=766195475]
+wait_time = 0.5
+one_shot = true
+
+[node name="HealthComponent" parent="." unique_id=1208464978 instance=ExtResource("2_3fvr7")]
+_max_health = 3
+
+[node name="HitStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1964346642]
+stream = SubResource("AudioStreamRandomizer_t1g2p")
+volume_db = -2.0
+max_polyphony = 3
+bus = &"sfx"
+
+[node name="HurtboxComponent" parent="." unique_id=1331896580 node_paths=PackedStringArray("health_component") instance=ExtResource("3_dt443")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtboxComponent" unique_id=347132431]
+position = Vector2(0, -11.5)
+shape = SubResource("RectangleShape2D_4wwj3")
+
+[node name="AlertSprite2D" type="Sprite2D" parent="." unique_id=1045346713]
+visible = false
+position = Vector2(0, -30)
+texture = ExtResource("4_d50e0")
+
+[node name="Visuals" type="Node2D" parent="." unique_id=1239017771]
+
+[node name="HitFlashSpriteComponent" parent="Visuals" unique_id=36334601 node_paths=PackedStringArray("health_component") instance=ExtResource("6_61ikd")]
+material = SubResource("ShaderMaterial_7vrfk")
+rotation = 0.00012332351
+texture = ExtResource("1_ksmh7")
+centered = false
+offset = Vector2(-8, -23)
+health_component = NodePath("../../HealthComponent")
+metadata/_edit_lock_ = true
+
+[node name="HitboxComponent" parent="." unique_id=1471453807 instance=ExtResource("5_4wwj3")]
+position = Vector2(0, -10)
+collision_layer = 4
+
+[node name="HitboxCollisionShape" type="CollisionShape2D" parent="HitboxComponent" unique_id=1630518692]
+unique_name_in_owner = true
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_d50e0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1213960310]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_im2q6")
+metadata/_edit_lock_ = true
+
+[connection signal="area_entered" from="HurtboxComponent" to="." method="_on_area_2d_area_entered"]

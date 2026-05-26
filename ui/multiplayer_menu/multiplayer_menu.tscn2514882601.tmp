@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://7r08yww1wekv"]
+
+[ext_resource type="Script" uid="uid://by583bi76uvgy" path="res://ui/multiplayer_menu/multiplayer_menu.gd" id="1_tvsvp"]
+
+[node name="MultiplayerMenu" type="MarginContainer" unique_id=2118055109]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+script = ExtResource("1_tvsvp")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1741804905]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HostButton" type="Button" parent="HBoxContainer" unique_id=1057667734]
+layout_mode = 2
+text = "Host"
+
+[node name="JoinButton" type="Button" parent="HBoxContainer" unique_id=1457415993]
+layout_mode = 2
+text = "Join"
+
+[node name="BackButton" type="Button" parent="." unique_id=217568050]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Back
+"
